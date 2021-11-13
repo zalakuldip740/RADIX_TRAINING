@@ -1,0 +1,16 @@
+ALTER QUERIES :--
+
+1. 
+ALTER TABLE JobHistory
+ADD CONSTRAINT fk_job_id FOREIGN KEY(Job_Id) REFERENCES Jobs(JobId);
+
+
+2.
+ALTER TABLE JobHistory
+DROP CONSTRAINT fk_job_id FOREIGN KEY(Job_Id);
+
+
+3.
+ALTER TABLE JobHistory
+ADD COLUMN Location TEXT;
+
