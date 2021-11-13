@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215322250617",
+    "project_id": "radix-fresher",
+    "storage_bucket": "radix-fresher.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215322250617:android:225e63e56844d5ddbaf3a8",
+        "android_client_info": {
+          "package_name": "com.example.radix_freshers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215322250617-u57g2aulqj680hsikomc7835sm0jsvmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2G4Qq0rggTJnYYQYL2EwgaCVWeyykkBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215322250617-u57g2aulqj680hsikomc7835sm0jsvmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
