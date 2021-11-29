@@ -1,0 +1,20 @@
+CREATE TABLE AuditEntityTable (
+    auditEntityId INT NOT NULL PRIMARY KEY ,
+    auditId INT NOT NULL,
+    auditEntityName TEXT NOT NULL,
+    auditEntityTypeId INT NOT NULL,
+    auditParentEntityId INT NOT NULL,
+    sequenceNo INT NOT NULL,
+    entityEndDate DATETIME,
+    isLeafNode BOOL NOT NULL,
+    barCodeNfc TEXT NOT NULL,
+    entityLevel INT NOT NULL,
+    entityException BOOL NOT NULL,
+    ScheduleOccurrenceIds TEXT NOT NULL
+    );
+-- methods
+insertAuditEntity: INSERT INTO auditEntityTable (auditEntityId,auditId,auditEntityName,auditEntityTypeId,auditParentEntityId,sequenceNo,entityEndDate,isLeafNode,barCodeNfc,entityLevel,entityException,ScheduleOccurrenceIds) VALUES (:auditEntityId,:auditId,:auditEntityName,:auditEntityTypeId,:auditParentEntityId,:sequenceNo,:entityEndDate,:isLeafNode,:barCodeNfc,:entityLevel,:entityException,:ScheduleOccurrenceIds);
+-- getAllAuditEntity: SELECT auditEntityId,auditEntityName,entityEndDate FROM auditEntityTable;
+getAllAuditEntity: SELECT * FROM auditEntityTable;
+updateByAuditEntityId: UPDATE auditEntityTable SET auditEntityName=:auditEntityName WHERE auditEntityId=:auditEntityId;
+deleteByAuditEntityId: DELETE FROM auditEntityTable WHERE auditEntityId=:auditEntityId;

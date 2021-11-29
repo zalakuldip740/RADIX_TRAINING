@@ -1,0 +1,18 @@
+CREATE TABLE AuditEntity (
+    auditEntityId INT NOT NULL PRIMARY KEY ,
+    auditId INT NOT NULL,
+    auditEntityName TEXT NOT NULL,
+    auditEntityTypeId INT NOT NULL,
+    auditParentEntityId INT NOT NULL,
+    sequenceNo INT NOT NULL,
+    entityEndDate DATETIME,
+    isLeafNode BOOL NOT NULL,
+    barCodeNfc TEXT NOT NULL,
+    entityLevel INT NOT NULL,
+    entityException BOOL NOT NULL,
+    ScheduleOccurrenceIds TEXT NOT NULL
+    );
+
+getAllAuditEntity: SELECT * FROM AuditEntity;
+updateByAuditEntityId: UPDATE auditEntity SET auditEntityName=:auditEntityName WHERE auditEntityId=:auditEntityId;
+deleteByAuditEntityId: DELETE FROM auditEntity WHERE auditEntityId=:auditEntityId;
