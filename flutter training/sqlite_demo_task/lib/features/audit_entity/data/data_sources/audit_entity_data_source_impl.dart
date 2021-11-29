@@ -10,28 +10,30 @@ class AuditEntityDataSourceImpl implements AuditEntityDataSource {
   final AuditEntityDb auditEntityDb;
 
   AuditEntityDataSourceImpl({required this.auditEntityDb});
+
   @override
-  Future<int> deleteAuditEntityData(int auditEntityId) async {
+  Future<int?>? deleteAuditEntityData(int auditEntityId) async {
     return auditEntityDb.deleteByAuditEntityId(auditEntityId);
   }
 
   @override
-  Stream getAuditEntitydata() {
+  Stream? getAuditEntitydata() {
     return auditEntityDb.getAuditEntity();
   }
 
   @override
-  Future<int> insertAuditEntityData(AuditEntitys auditEntitys) {
+  Future<int?>? insertAuditEntityData(AuditEntitys auditEntitys) {
     return auditEntityDb.insertAuditEntityData(auditEntitys);
   }
 
   @override
-  Future<int> updateAuditEntityData(String auditEntityName, int auditEntityId) {
+  Future<int?>? updateAuditEntityData(
+      String auditEntityName, int auditEntityId) {
     return auditEntityDb.updateByAuditEntityId(auditEntityName, auditEntityId);
   }
 
   @override
-  Future<List<AuditEntitysData>?> getJsonData() async {
+  Future<List<AuditEntitysData>?>? getJsonData() async {
     final String response =
         await rootBundle.rootBundle.loadString('assets/Entity.json');
     final data = AuditEntityDatas.fromJson(json.decode(response));
