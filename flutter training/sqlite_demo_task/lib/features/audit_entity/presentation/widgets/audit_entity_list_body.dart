@@ -11,81 +11,85 @@ Widget auditListBody(List data, TextEditingController auditEntityNameController,
   return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        return Card(
-          child: Slidable(
-            key: const ValueKey(0),
-            startActionPane: ActionPane(
-              motion: const ScrollMotion(),
-              children: [
-                SlidableAction(
-                  onPressed: (context) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return updateDialog(formKey, context,
-                              auditEntityNameController, data, index);
-                        });
-                  },
-                  backgroundColor: Colors.greenAccent,
-                  foregroundColor: Colors.white,
-                  icon: Icons.edit,
-                  label: 'Update',
-                ),
-              ],
-            ),
-            endActionPane: ActionPane(
-              motion: const ScrollMotion(),
-              children: [
-                SlidableAction(
-                  onPressed: (context) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("Delete AuditEntity"),
-                            content: const Text("Are you sure want to delete?"),
-                            elevation: 0.0,
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Cancel')),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    BlocProvider.of<AuditEntityCubit>(context)
-                                        .deleteAuditEntityData(
-                                            data[index].auditEntityId);
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('OK')),
-                            ],
-                          );
-                        });
-                  },
-                  backgroundColor: Colors.redAccent,
-                  foregroundColor: Colors.white,
-                  icon: Icons.delete,
-                  label: 'Delete',
-                ),
-              ],
-            ),
-            child: ListTile(
-              title: Text(
-                data[index].auditEntityName.toString(),
-                style: const TextStyle(fontWeight: FontWeight.w900),
-              ),
-              subtitle: Row(
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Card(
+            child: Slidable(
+              key: const ValueKey(0),
+              startActionPane: ActionPane(
+                motion: const ScrollMotion(),
                 children: [
-                  const FaIcon(
-                    FontAwesomeIcons.clock,
-                    size: 15,
-                    color: Colors.black38,
+                  SlidableAction(
+                    onPressed: (context) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return updateDialog(formKey, context,
+                                auditEntityNameController, data, index);
+                          });
+                    },
+                    backgroundColor: Colors.greenAccent,
+                    foregroundColor: Colors.white,
+                    icon: Icons.edit,
+                    label: 'Update',
                   ),
-                  Text(" " +
-                      DateFormat('dd-MM-yyyy').format(DateTime.parse(
-                          data[index].entityEndDate.toString()))),
                 ],
+              ),
+              endActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                children: [
+                  SlidableAction(
+                    onPressed: (context) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Delete AuditEntity"),
+                              content:
+                                  const Text("Are you sure want to delete?"),
+                              elevation: 0.0,
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Cancel')),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      BlocProvider.of<AuditEntityCubit>(context)
+                                          .deleteAuditEntityData(
+                                              data[index].auditEntityId);
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK')),
+                              ],
+                            );
+                          });
+                    },
+                    backgroundColor: Colors.redAccent,
+                    foregroundColor: Colors.white,
+                    icon: Icons.delete,
+                    label: 'Delete',
+                  ),
+                ],
+              ),
+              child: ListTile(
+                title: Text(
+                  data[index].auditEntityName.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.w900),
+                ),
+                subtitle: Row(
+                  children: [
+                    const FaIcon(
+                      FontAwesomeIcons.clock,
+                      size: 15,
+                      color: Colors.black38,
+                    ),
+                    Text(" " +
+                        DateFormat('dd-MM-yyyy').format(DateTime.parse(
+                            data[index].entityEndDate.toString()))),
+                  ],
+                ),
               ),
             ),
           ),

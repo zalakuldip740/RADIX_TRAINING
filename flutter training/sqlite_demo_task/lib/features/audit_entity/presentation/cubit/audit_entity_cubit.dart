@@ -28,8 +28,8 @@ class AuditEntityCubit extends Cubit<AuditEntityState> {
     emit(AuditEntityLoading());
     try {
       final result = getAuditEntityUsecase.call();
-      result!.listen((data) async {
-        if (data.length == 0) {
+      result!.listen((auditEntityData) async {
+        if (auditEntityData.length == 0) {
           final data = await getJsonDataUsecase.call();
           // final String response =
           //     await rootBundle.rootBundle.loadString('assets/Entity.json');
@@ -54,7 +54,7 @@ class AuditEntityCubit extends Cubit<AuditEntityState> {
             //emit(AuditEntityLoaded(data: data))
           }
         } else {
-          emit(AuditEntityLoaded(auditEntitydata: data));
+          emit(AuditEntityLoaded(auditEntitydata: auditEntityData));
         }
       });
     } on Exception {
