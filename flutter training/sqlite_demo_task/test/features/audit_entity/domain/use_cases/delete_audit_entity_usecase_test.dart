@@ -16,8 +16,8 @@ void main() {
   int auditEntityId = 3286;
   test('delete auditentity test', () async {
     when(mockAuditEntityRepository.deleteAuditEntityData(auditEntityId))
-        .thenAnswer((_) async => Future.value(auditEntityId));
+        .thenAnswer((_) async => Future.value(1));
     final result = await deleteAuditEntityUsecase.call(auditEntityId);
-    expect(result, auditEntityId);
+    expect(result, 1);
   });
 }

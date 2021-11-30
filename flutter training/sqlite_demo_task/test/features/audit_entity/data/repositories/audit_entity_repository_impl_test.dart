@@ -49,27 +49,27 @@ void main() {
     ];
     test("delete data repo test", () async {
       when(mockAuditEntityDataSource.deleteAuditEntityData(auditEntityId))
-          .thenAnswer((_) async => Future.value(auditEntityId));
+          .thenAnswer((_) async => Future.value(1));
       final result =
           await auditEntityRepositoryImpl.deleteAuditEntityData(auditEntityId);
-      expect(result, auditEntityId);
+      expect(result, 1);
     });
     test("update data repo test", () async {
       when(mockAuditEntityDataSource.updateAuditEntityData(
               auditEntityName, auditEntityId))
-          .thenAnswer((_) async => Future.value(auditEntityId));
+          .thenAnswer((_) async => Future.value(1));
       final result = await auditEntityRepositoryImpl.updateAuditEntityData(
           auditEntityName, auditEntityId);
-      expect(result, auditEntityId);
+      expect(result, 1);
     });
     test("insert data repo test", () async {
       when(mockAuditEntityDataSource.insertAuditEntityData(auditEntitys))
-          .thenAnswer((_) async => Future.value(auditEntitys.auditEntityId));
+          .thenAnswer((_) async => Future.value(1));
       final result =
           await auditEntityRepositoryImpl.insertAuditEntityData(auditEntitys);
-      expect(result, auditEntitys.auditEntityId);
+      expect(result, 1);
     });
-    test("get data repo test", () async {
+    test("get audit entitydata repo test", () async {
       when(mockAuditEntityDataSource.getAuditEntitydata())
           .thenAnswer((_) => mockdata);
       final result = auditEntityRepositoryImpl.getAuditEntitydata();

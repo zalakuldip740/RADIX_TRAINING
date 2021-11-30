@@ -18,9 +18,9 @@ void main() {
   test('update auditentity test', () async {
     when(mockAuditEntityRepository.updateAuditEntityData(
             auditEntityName, auditEntityId))
-        .thenAnswer((_) async => Future.value(auditEntityId));
+        .thenAnswer((_) async => Future.value(1));
     final result =
         await updateAuditEntityUsecase.call(auditEntityName, auditEntityId);
-    expect(result, auditEntityId);
+    expect(result, 1);
   });
 }

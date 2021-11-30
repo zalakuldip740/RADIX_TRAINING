@@ -31,7 +31,7 @@ updateDialog(GlobalKey<FormState> formKey, BuildContext context,
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Cancel')),
+          child: const Text('Cancel')),
       ElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
@@ -40,7 +40,7 @@ updateDialog(GlobalKey<FormState> formKey, BuildContext context,
               Navigator.pop(context);
             }
           },
-          child: Text('Update')),
+          child: const Text('Update')),
     ],
   );
 }

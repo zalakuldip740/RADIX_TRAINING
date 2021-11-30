@@ -15,7 +15,7 @@ void main() {
         auditEntityRepository: mockAuditEntityRepository);
   });
   final auditEntitys = AuditEntitys(
-      auditEntityId: 1,
+      auditEntityId: 100,
       auditId: 1,
       auditEntityName: "auditEntityName",
       auditEntityTypeId: 2,
@@ -29,8 +29,8 @@ void main() {
       scheduleOccurrenceIds: "scheduleOccurrenceIds");
   test('insert auditentity test', () async {
     when(mockAuditEntityRepository.insertAuditEntityData(auditEntitys))
-        .thenAnswer((_) async => Future.value(auditEntitys.auditEntityId));
+        .thenAnswer((_) async => Future.value(1));
     final result = await insertAuditEntityUsecase.call(auditEntitys);
-    expect(result, auditEntitys.auditEntityId);
+    expect(result, 1);
   });
 }

@@ -63,10 +63,11 @@ class AuditEntityCubit extends Cubit<AuditEntityState> {
   }
 
   updateAuditEntitydata(String newAuditEntityName, int auditEntityId) async {
-    await updateAuditEntityUsecase.call(newAuditEntityName, auditEntityId);
+    return await updateAuditEntityUsecase.call(
+        newAuditEntityName, auditEntityId);
   }
 
   deleteAuditEntityData(int auditEntityId) async {
-    await deleteAuditEntityUsecase.call(auditEntityId);
+    return await deleteAuditEntityUsecase.call(auditEntityId);
   }
 }
