@@ -619,7 +619,7 @@ class AuditEntityTable extends Table
 abstract class _$AuditEntityDb extends GeneratedDatabase {
   _$AuditEntityDb(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final AuditEntityTable auditEntityTable = AuditEntityTable(this);
-  Future<int> insertAuditEntity(
+  Future<int?>? insertAuditEntity(
       int auditEntityId,
       int auditId,
       String auditEntityName,
@@ -652,7 +652,7 @@ abstract class _$AuditEntityDb extends GeneratedDatabase {
     );
   }
 
-  Selectable<AuditEntityTableData> getAllAuditEntity() {
+  Selectable<AuditEntityTableData>? getAllAuditEntity() {
     return customSelect('SELECT * FROM auditEntityTable',
         variables: [],
         readsFrom: {
@@ -660,7 +660,8 @@ abstract class _$AuditEntityDb extends GeneratedDatabase {
         }).map(auditEntityTable.mapFromRow);
   }
 
-  Future<int> updateByAuditEntityId(String auditEntityName, int auditEntityId) {
+  Future<int?>? updateByAuditEntityId(
+      String auditEntityName, int auditEntityId) {
     return customUpdate(
       'UPDATE auditEntityTable SET auditEntityName=:auditEntityName WHERE auditEntityId=:auditEntityId',
       variables: [
@@ -672,7 +673,7 @@ abstract class _$AuditEntityDb extends GeneratedDatabase {
     );
   }
 
-  Future<int> deleteByAuditEntityId(int auditEntityId) {
+  Future<int?>? deleteByAuditEntityId(int auditEntityId) {
     return customUpdate(
       'DELETE FROM auditEntityTable WHERE auditEntityId=:auditEntityId',
       variables: [Variable<int>(auditEntityId)],

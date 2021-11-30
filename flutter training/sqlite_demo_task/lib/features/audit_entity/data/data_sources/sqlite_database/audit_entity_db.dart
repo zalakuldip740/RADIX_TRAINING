@@ -28,9 +28,9 @@ class AuditEntityDb extends _$AuditEntityDb {
   @override
   int get schemaVersion => 1;
 
-  Stream<List<AuditEntityTableData>> getAuditEntity() =>
-      getAllAuditEntity().watch();
-  Future<int> insertAuditEntityData(AuditEntitys auditEntitys) =>
+  Stream<List<AuditEntityTableData>>? getAuditEntity() =>
+      getAllAuditEntity()!.watch();
+  Future<int?>? insertAuditEntityData(AuditEntitys auditEntitys) =>
       insertAuditEntity(
           auditEntitys.auditEntityId,
           auditEntitys.auditId,
@@ -44,8 +44,8 @@ class AuditEntityDb extends _$AuditEntityDb {
           auditEntitys.entityLevel,
           auditEntitys.entityException,
           auditEntitys.scheduleOccurrenceIds);
-  Future<int> deleteAuditEntity(int auditEntityId) =>
+  Future<int?>? deleteAuditEntity(int auditEntityId) =>
       deleteByAuditEntityId(auditEntityId);
-  Future<int> updateAuditEntity(String auditEntityName, int auditEntityId) =>
+  Future<int?>? updateAuditEntity(String auditEntityName, int auditEntityId) =>
       updateByAuditEntityId(auditEntityName, auditEntityId);
 }

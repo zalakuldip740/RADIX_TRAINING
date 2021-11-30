@@ -85,9 +85,12 @@ Widget auditListBody(List data, TextEditingController auditEntityNameController,
                       size: 15,
                       color: Colors.black38,
                     ),
-                    Text(" " +
-                        DateFormat('dd-MM-yyyy').format(DateTime.parse(
-                            data[index].entityEndDate.toString()))),
+                    if (data[index].entityEndDate == null)
+                      const Text(' Not Available'),
+                    if (data[index].entityEndDate != null)
+                      Text(" " +
+                          DateFormat('dd-MM-yyyy').format(DateTime.parse(
+                              data[index].entityEndDate.toString()))),
                   ],
                 ),
               ),
