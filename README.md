@@ -1,2 +1,9 @@
 # RADIX_TRAINING
-ALL TASK
+  # Dart task
+  # Flutter Task
+  # Node task
+  # Js task
+  # Ts task
+  # Sqlite Task
+  
+                ##  BY KULDIPSINH ZALA
