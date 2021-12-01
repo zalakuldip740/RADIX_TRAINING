@@ -16,7 +16,7 @@ abstract class ApiService {
         queryParameters: {
           //'Content-Type': 'application/json',
           // 'Accept': 'application/json',
-          'apiKey': '49c113ab24074c2e80fb546f2408a96f',
+          'apiKey': 'YOUR API KEY',
           'q': categoryname ?? '',
           'pageSize': 5,
           'page': page ?? ""
