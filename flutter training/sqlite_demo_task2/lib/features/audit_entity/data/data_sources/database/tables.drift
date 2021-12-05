@@ -1,0 +1,334 @@
+CREATE TABLE AuditDetailsList (
+    userId INT NOT NULL,
+    auditName TEXT NOT NULL,
+    auditId INT NOT NULL PRIMARY KEY ,
+    failureReason BOOL NOT NULL,
+    correctiveAction BOOL NOT NULL,
+    auditorSignOff BOOL NOT NULL,
+    secondarySignOff BOOL NOT NULL,
+    entityMustAddress BOOL NOT NULL,
+    scoringFormulaId INT NOT NULL,
+    auditMasterId INT NOT NULL,
+    autoSyncInMobile BOOL NOT NULL,
+    versionId INT,
+    isFailureText INT NOT NULL,
+    isFailureList INT NOT NULL,
+    isCorrectiveActionText INT NOT NULL,
+    isCorrectiveActionList INT NOT NULL,
+    defaultTaskDueDateDays INT NOT NULL,
+    task BOOL NOT NULL,
+    allowDueDate BOOL NOT NULL,
+    sendTaskAlertEmail BOOL NOT NULL,
+    barcodeOrNFC INT NOT NULL,
+    canEdit BOOL NOT NULL,
+    showScoreInMobile BOOL NOT NULL,
+    isRecheck BOOL NOT NULL,
+    isRandomization BOOL NOT NULL,
+    isQuestionCategory BOOL NOT NULL,
+    isNotifyAuditor BOOL NOT NULL,
+    auditorDeclarationText TEXT ,
+    secondaryDeclarationText TEXT ,
+    isScheduling BOOL NOT NULL,
+    isFormerData BOOL NOT NULL,
+    isAuditQuestions BOOL NOT NULL,
+    isEntitiesAuditable BOOL NOT NULL,
+    isEnforceFormerAudit BOOL NOT NULL,
+    isFlipScore BOOL NOT NULL,
+    auditTracking BOOL NOT NULL,
+    isMultipleLevelTeam BOOL NOT NULL,
+    isTaskDistribution BOOL NOT NULL,
+    approveProcessEntitiesMandatory BOOL NOT NULL,
+    approvalProcess BOOL NOT NULL,
+    submissionPasswordRequired BOOL NOT NULL,
+    isViewOnlyFormerData BOOL NOT NULL,
+    auditGroupId INT NOT NULL,
+    auditEndDate DATETIME,
+    lastAuditResponseId INT
+    );
+CREATE TABLE scoringTypes (
+    scoringTypeId INT NOT NULL PRIMARY KEY,
+    scoringTypeName TEXT NOT NULL,
+    applicationLanguageId INT NOT NULL
+);
+
+CREATE TABLE scoringFormulaInfoModel (
+    scoringFormulaId INT NOT NULL,
+    scoringFormulaDetailId INT NOT NULL PRIMARY KEY,
+    scoringtypeid INT NOT NULL,
+    shortCode TEXT NOT NULL,
+    sortOrder INT NOT NULL,
+    title TEXT NOT NULL,
+    weight INT,
+    isDefault BOOL NOT NULL,
+    hexCode TEXT NOT NULL,
+    fontHexCode TEXT NOT NULL,
+    isAuditQuestions BOOL NOT NULL,
+    initialAuditScore INT
+);
+
+CREATE TABLE auditScoring (
+    auditScoringId INT NOT NULL PRIMARY KEY,
+    auditId INT NOT NULL,
+    minScore INT NOT NULL,
+    maxScore DOUBLE ,
+    color TEXT
+);
+
+CREATE TABLE AuditEntityTable (
+    auditEntityId INT NOT NULL PRIMARY KEY ,
+    auditId INT NOT NULL,
+    auditEntityName TEXT NOT NULL,
+    auditEntityTypeId INT NOT NULL,
+    auditParentEntityId INT NOT NULL,
+    sequenceNo INT NOT NULL,
+    entityEndDate DATETIME,
+    isLeafNode BOOL NOT NULL,
+    barCodeNfc TEXT,
+    entityLevel INT NOT NULL,
+    entityException BOOL,
+    ScheduleOccurrenceIds TEXT
+    );
+
+
+CREATE TABLE auditQuestion (
+    auditQuestionId INT NOT NULL PRIMARY KEY ,
+    auditId INT NOT NULL,
+    questionTitle TEXT NOT NULL,
+    sequenceNo INT NOT NULL,
+    description TEXT NOT NULL,
+    weight INT NOT NULL,
+    statusId INT NOT NULL,
+    questionCategory TEXT NOT NULL,
+    questionCategoryId INT,
+    questionImageId INT,
+    imageUrl TEXT
+     );
+
+
+CREATE TABLE auditEntityTypes (
+    auditId INT NOT NULL,
+    auditEntityTypeId INT NOT NULL PRIMARY KEY,
+    auditEntityTypeName TEXT NOT NULL,
+    entityTypeWeight DOUBLE
+);
+
+CREATE TABLE auditEntityTypeQuestions (
+    auditEntityTypeId INT NOT NULL,
+    auditEntityTypeQuestionId INT NOT NULL PRIMARY KEY,
+    auditQuestionId INT
+);
+
+CREATE TABLE auditCorrectiveActions (
+    auditCorrectiveActionId INT NOT NULL,
+    auditEntityTypeQuestionId INT NOT NULL,
+    auditQuestionCorrectiveActionId INT NOT NULL,
+    correctiveActionTitle TEXT NOT NULL,
+    auditId INT NOT NULL
+);
+
+CREATE TABLE auditFailureReason (
+    auditQuestionFailureReasonId INT NOT NULL PRIMARY KEY,
+    auditEntityTypeQuestionId INT NOT NULL,
+    auditFailureReasonId INT NOT NULL,
+    failureReasonTitle TEXT NOT NULL,
+    auditId INT NOT NULL
+);
+
+CREATE TABLE auditAdditionalFields (
+    additionalFieldId INT NOT NULL PRIMARY KEY,
+    auditId INT NOT NULL,
+    fieldName TEXT NOT NULL,
+    fieldTypeId INT NOT NULL,
+    displayPosition INT,
+    isMandatory BOOL NOT NULL,
+    isPreDisplay BOOL,
+    levelTypeId INT NOT NULL,
+    auditQuestionId INT,
+    sequenceNo INT NOT NULL,
+    isMask BOOL NOT NULL,
+    maskPattent TEXT,
+    maskPlaceholder TEXT
+);
+
+
+
+CREATE TABLE auditAdditionalFieldTypeValues (
+    additionalFieldTypeValueId INT NOT NULL PRIMARY KEY,
+    additionalFieldId INT NOT NULL,
+    additionalFieldValue TEXT NOT NULL
+);
+
+
+CREATE TABLE auditAdditionalFieldEntityTypes (
+    additionalFieldEntityTypeId INT NOT NULL PRIMARY KEY,
+    additionalFieldId INT NOT NULL,
+    entityTypeId INT NOT NULL,
+    entityLevel INT NOT NULL
+);
+
+CREATE TABLE size (
+    androidMaxUploadFileSize INT NOT NULL,
+    iosMaxUploadFileSize INT NOT NULL,
+    htmL5MaxUploadFileSize INT NOT NULL,
+    additionalFieldEmail INT NOT NULL,
+    additionalFieldTextArea INT NOT NULL,
+    additionalFieldTextBox INT NOT NULL,
+    additionalFieldLocation INT NOT NULL,
+    comment INT NOT NULL,
+    failureNote INT NOT NULL,
+    correctiveNote INT NOT NULL,
+    barcode INT NOT NULL,
+    taskComment INT NOT NULL,
+     sessionTimeOut INT NOT NULL,
+     signDeclarationTextSize INT NOT NULL,
+    nfcComment INT NOT NULL,
+    captureImageNote INT NOT NULL,
+    nonAuditableComment INT NOT NULL,
+    flipScoreTime INT NOT NULL,
+    eventNumber INT NOT NULL,
+     eventTitle INT NOT NULL,
+    eventDescription INT NOT NULL,
+    eventRiskAssociated INT NOT NULL,
+    eventImmediateActionTaken INT NOT NULL,
+    eventCorrectiveActions INT NOT NULL,
+    eventSituationTitle INT NOT NULL,
+     eventSituationDetails INT NOT NULL,
+     eventKeyIssueTitle INT NOT NULL,
+     eventKeyIssueActionTitle INT NOT NULL,
+     injuryPersonName INT NOT NULL,
+     injurySupervisiorName INT NOT NULL,
+     eventInjuryComment INT NOT NULL,
+     eventScheduleTitle INT NOT NULL,
+     keyIssueActionComment INT NOT NULL,
+     situationTitle INT NOT NULL,
+     situationDetail INT NOT NULL,
+     lostHours INT NOT NULL,
+     initialRootCauses INT NOT NULL,
+     finalClosureNotes INT NOT NULL,
+      maxEventAttachment INT NOT NULL,
+      maxEventInvestigationAttachment INT NOT NULL,
+      defaultTaskDueDateDays INT NOT NULL
+);
+
+CREATE TABLE auditTeamTask (
+    auditTeamMappingId INT NOT NULL PRIMARY KEY,
+    auditId INT NOT NULL,
+    auditEntityId INT NOT NULL,
+    teamId INT NOT NULL,
+    memberId INT NOT NULL
+);
+
+CREATE TABLE teamDetails (
+    teamId INT NOT NULL PRIMARY KEY,
+    teamName TEXT NOT NULL
+);
+
+CREATE TABLE userDetails (
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    memberId INT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE userPermission (
+    userTaskPermission BOOL NOT NULL
+);
+
+CREATE TABLE occurrenceScheduleDates (
+    occurrenceScheduleDateId INT NOT NULL PRIMARY KEY,
+    auditId INT NOT NULL,
+    auditScheduleRuleId INT NOT NULL,
+    scheduleOccurrenceId INT NOT NULL,
+    scheduleRuleTitle TEXT NOT NULL,
+    occurrenceTitle TEXT NOT NULL,
+    occurrenceCycle INT NOT NULL,
+    startDate DATETIME,
+    endDate DATETIME,
+    auditStatusId INT NOT NULL,
+    userId INT NOT NULL,
+    isEntityRule BOOL NOT NULL
+);
+
+CREATE TABLE auditEnforceTimeData (
+     enforceTimeId INT NOT NULL PRIMARY KEY,
+     auditId INT NOT NULL,
+     fromTime TEXT NOT NULL,
+     toTime TEXT NOT NULL
+);
+
+CREATE TABLE auditGroups (
+    auditGroupId INT NOT NULL PRIMARY KEY,
+    auditGroupParentId INT,
+    auditGroupName TEXT NOT NULL,
+    auditGroupLevel INT NOT NULL,
+    auditCount INT NOT NULL
+);
+
+insertAuditDetailsList: INSERT INTO auditDetailsList VALUES (:userId,:auditName,:auditId,:failureReason,:correctiveAction,:auditorSignOff,:secondarySignOff,:entityMustAddress,:scoringFormulaId,:auditMasterId,:autoSyncInMobile,:versionId,:isFailureText,:isFailureList,:isCorrectiveActionText,:isCorrectiveActionList,:defaultTaskDueDateDays,:task,:allowDueDate,:sendTaskAlertEmail,:barcodeOrNFC,:canEdit,:showScoreInMobile,:isRecheck,:isRandomization,:isQuestionCategory,:isNotifyAuditor,:auditorDeclarationText,:secondaryDeclarationText,:isScheduling,:isFormerData,:isAuditQuestions,:isEntitiesAuditable,:isEnforceFormerAudit,:isFlipScore,:auditTracking,:isMultipleLevelTeam,:isTaskDistribution,:approveProcessEntitiesMandatory,:approvalProcess,:submissionPasswordRequired,:isViewOnlyFormerData,:auditGroupId,:auditEndDate,:lastAuditResponseId);
+
+insertScoringTypes: INSERT INTO scoringTypes VALUES (:scoringTypeId,:scoringTypeName,:applicationLanguageId);
+
+insertScoringFormulaInfoModel: INSERT INTO scoringFormulaInfoModel VALUES (:scoringFormulaId,:scoringFormulaDetailId,:scoringtypeid,:shortCode,:sortOrder,:title,:weight,:isDefault,:hexCode,:fontHexCode,:isAuditQuestions,:initialAuditScore);
+
+insertAuditScoring: INSERT INTO auditScoring VALUES (:auditScoringId,:auditId,:minScore,:maxScore,:color);
+
+insertAuditEntity: INSERT INTO auditEntityTable VALUES (:auditEntityId,:auditId,:auditEntityName,:auditEntityTypeId,:auditParentEntityId,:sequenceNo,:entityEndDate,:isLeafNode,:barCodeNfc,:entityLevel,:entityException,:ScheduleOccurrenceIds);
+
+insertAuditQuestion: INSERT INTO auditQuestion VALUES (:auditQuestionId,:auditId,:questionTitle,:sequenceNo,:description,:weight,:statusId,:questionCategory,:questionCategoryId,:questionImageId,:imageUrl);
+
+insertAuditEntityTypes: INSERT INTO auditEntityTypes VALUES (:auditId,:auditEntityTypeId,:auditEntityTypeName,:entityTypeWeight);
+
+insertAuditEntityTypeQuestions: INSERT INTO auditEntityTypeQuestions VALUES (:auditEntityTypeId,:auditEntityTypeQuestionId,:auditQuestionId);
+
+insertAuditCorrectiveActions: INSERT INTO auditCorrectiveActions VALUES (:auditCorrectiveActionId,:auditEntityTypeQuestionId,:auditQuestionCorrectiveActionId,:correctiveActionTitle,:auditId);
+
+insertAuditFailureReason: INSERT INTO auditFailureReason VALUES (:auditQuestionFailureReasonId,:auditEntityTypeQuestionId,:auditFailureReasonId,:failureReasonTitle,:auditId);
+
+insertAuditAdditionalFields: INSERT INTO auditAdditionalFields VALUES (:additionalFieldId,:auditId,:fieldName,:fieldTypeId,:displayPosition,:isMandatory,:isPreDisplay,:levelTypeId,:auditQuestionId,:sequenceNo,:isMask,:maskPattent,:maskPlaceholder);
+
+insertAuditAdditionalFieldTypeValues: INSERT INTO auditAdditionalFieldTypeValues VALUES (:additionalFieldTypeValueId,:additionalFieldId,:additionalFieldValue);
+
+insertAuditAdditionalFieldEntityTypes: INSERT INTO auditAdditionalFieldEntityTypes VALUES (:additionalFieldEntityTypeId,:additionalFieldId,:entityTypeId,:entityLevel);
+
+insertSize: INSERT INTO size VALUES (:androidMaxUploadFileSize,:iosMaxUploadFileSize,:htmL5MaxUploadFileSize,:additionalFieldEmail,:additionalFieldTextArea,:additionalFieldTextBox,:additionalFieldLocation,:comment,:failureNote,:correctiveNote,:barcode,:taskComment,:sessionTimeOut,:signDeclarationTextSize,:nfcComment,:captureImageNote,:nonAuditableComment,:flipScoreTime,:eventNumber,:eventTitle,:eventDescription,:eventRiskAssociated,:eventImmediateActionTaken,:eventCorrectiveActions,:eventSituationTitle,:eventSituationDetails,:eventKeyIssueTitle,:eventKeyIssueActionTitle,:injuryPersonName,:injurySupervisiorName,:eventInjuryComment,:eventScheduleTitle,:keyIssueActionComment,:situationTitle,:situationDetail,:lostHours,:initialRootCauses,:finalClosureNotes,:maxEventAttachment,:maxEventInvestigationAttachment,:defaultTaskDueDateDays);
+
+insertAuditTeamTask: INSERT INTO auditTeamTask VALUES (:auditTeamMappingId,:auditId,:auditEntityId,:teamId,:memberId);
+
+insertTeamDetails: INSERT INTO teamDetails VALUES (:teamId,:teamName);
+
+insertUserDetails: INSERT INTO userDetails VALUES (:firstName,:lastName,:memberId);
+
+insertUserPermission: INSERT INTO userPermission VALUES (:userTaskPermission);
+
+insertOccurrenceScheduleDates: INSERT INTO occurrenceScheduleDates VALUES (:occurrenceScheduleDateId,:auditId,:auditScheduleRuleId,:scheduleOccurrenceId,:scheduleRuleTitle,:occurrenceTitle,:occurrenceCycle,:startDate,:endDate,:auditStatusId,:userId,:isEntityRule);
+
+insertAuditEnforceTimeData: INSERT INTO auditEnforceTimeData VALUES (:enforceTimeId,:auditId,:fromTime,:toTime);
+
+insertAuditGroups: INSERT INTO auditGroups VALUES (:auditGroupId,:auditGroupParentId,:auditGroupName,:auditGroupLevel,:auditCount);
+
+
+
+count: SELECT (SELECT COUNT(*) FROM auditDetailsList) AS countAuditDetailsList,
+(SELECT COUNT(*) FROM scoringTypes) AS countScoringTypes,
+(SELECT COUNT(*) FROM scoringFormulaInfoModel) AS countScoringFormulaInfoModel,
+(SELECT COUNT(*) FROM auditScoring) AS countAuditScoring,
+(SELECT COUNT(*) FROM auditEntityTable) AS countAuditEntityTable,
+(SELECT COUNT(*) FROM auditQuestion) AS countAuditQuestion,
+(SELECT COUNT(*) FROM auditEntityTypes) AS countauditEntityTypes,
+(SELECT COUNT(*) FROM auditEntityTypeQuestions) AS countauditEntityTypeQuestions,
+(SELECT COUNT(*) FROM auditCorrectiveActions) AS countauditCorrectiveActions,
+(SELECT COUNT(*) FROM auditFailureReason) AS countauditFailureReason,
+(SELECT COUNT(*) FROM auditAdditionalFields) AS countauditAdditionalFields,
+(SELECT COUNT(*) FROM auditAdditionalFieldTypeValues) AS countauditAdditionalFieldTypeValues,
+(SELECT COUNT(*) FROM auditAdditionalFieldEntityTypes) AS countauditAdditionalFieldEntityTypes,
+(SELECT COUNT(*) FROM size) AS countsize,
+(SELECT COUNT(*) FROM auditTeamTask) AS countauditTeamTask,
+(SELECT COUNT(*) FROM teamDetails) AS countteamDetails,
+(SELECT COUNT(*) FROM userDetails) AS countuserDetails,
+(SELECT COUNT(*) FROM userPermission) AS countuserPermission,
+(SELECT COUNT(*) FROM occurrenceScheduleDates) AS countoccurrenceScheduleDates,
+(SELECT COUNT(*) FROM auditEnforceTimeData) AS countauditEnforceTimeData,
+(SELECT COUNT(*) FROM auditGroups) AS countauditGroups;
+
+
+
+
