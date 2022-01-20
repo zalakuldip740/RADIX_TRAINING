@@ -13,7 +13,7 @@ class HeadLineNewsDataSourceImpl implements HeadLineNewsDataSource {
   @override
   Future<HeadlineNewsEntity?>? getHeadLineNews() async {
     final url = Uri.https('newsapi.org', '/v2/top-headlines',
-        {'apiKey': '49c113ab24074c2e80fb546f2408a96f', 'language': 'en'});
+        {'apiKey': 'YOUR API KEY', 'language': 'en'});
     final response = await client.get(
       url,
       headers: {'Content-Type': 'application/json'},
