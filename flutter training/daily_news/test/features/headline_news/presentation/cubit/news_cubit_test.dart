@@ -37,7 +37,8 @@ void main() {
       when(mockGetHeadLineNewsUsecase.call())
           .thenAnswer((realInvocation) async => Left(ServerFailure()));
       await headLineNewsCubit.getnews();
-      expect(headLineNewsCubit.state, NewsError(msg: any));
+      expect(headLineNewsCubit.state, NewsError(msg: ""));
+      //verify(mockGetHeadLineNewsUsecase);
     });
     test('should emit success state when data received', () async {
       when(mockGetHeadLineNewsUsecase.call())

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:daily_news/config/constants.dart';
 import 'package:daily_news/features/headline_news/data/data_sources/headline_news_data_source_impl.dart';
 import 'package:daily_news/features/headline_news/domain/entities/headline_news_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,14 +12,12 @@ import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';
 import 'headline_news_data_source_impl_test.mocks.dart';
 
-// Generate a MockClient using the Mockito package.
-// Create new instances of this class in each test.
 @GenerateMocks([http.Client])
 void main() {
   late HeadLineNewsDataSourceImpl headLineNewsDataSourceImpl;
   late MockClient mockClient;
-  final url = Uri.https('newsapi.org', '/v2/top-headlines',
-      {'apiKey': '49c113ab24074c2e80fb546f2408a96f', 'language': 'en'});
+  final url = Uri.https(
+      'newsapi.org', '/v2/top-headlines', {'apiKey': apiKey, 'language': 'en'});
 
   setUp(() {
     mockClient = MockClient();

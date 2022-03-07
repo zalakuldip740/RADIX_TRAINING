@@ -24,7 +24,6 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     myNameController.dispose();
     myBioController.dispose();
     super.dispose();

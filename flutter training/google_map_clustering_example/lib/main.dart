@@ -9,16 +9,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Google Map Clustering Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const GoogleMapClustering()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Google Map Clustering Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const GoogleMapClustering());
   }
 }
-

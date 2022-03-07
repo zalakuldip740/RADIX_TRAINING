@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:daily_news/config/constants.dart';
 import 'package:daily_news/core/error/failue.dart';
 import 'package:daily_news/features/headline_news/data/data_sources/headline_news_data_source.dart';
 import 'package:daily_news/features/headline_news/domain/entities/headline_news_entity.dart';
@@ -13,7 +14,7 @@ class HeadLineNewsDataSourceImpl implements HeadLineNewsDataSource {
   @override
   Future<HeadlineNewsEntity?>? getHeadLineNews() async {
     final url = Uri.https('newsapi.org', '/v2/top-headlines',
-        {'apiKey': 'YOUR API KEY', 'language': 'en'});
+        {'apiKey': apiKey, 'language': 'en'});
     final response = await client.get(
       url,
       headers: {'Content-Type': 'application/json'},
